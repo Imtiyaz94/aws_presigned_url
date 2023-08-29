@@ -27,6 +27,35 @@
 .App-link {
   color: #61dafb;
 }
+.upload{
+  position:relative;
+  align:center;
+  left:42%;
+  /* right:auto; */
+  height:70px;
+  width:300px;
+  border : 1px dashed blue;
+  border-radius:10px;
+  padding:10px;
+}
+button{
+  height:30px;
+  width:60px;
+  text-decoration:none;
+  border:none;
+  background-color:skyblue;
+  margin:5px auto;
+}
+
+.image-list {
+  border:'2px solid red';
+}
+.image {
+  margin:20px auto;
+  height:150px;
+  width:200px;
+  /* background-image:content-fit; */
+}
 
 @keyframes App-logo-spin {
   from {

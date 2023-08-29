@@ -1,20 +1,21 @@
+configDotenv();
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import ImageRoutes from './routes/getURL.js';
-import bodyParser from 'body-parser';
+import { configDotenv } from 'dotenv';
 
 
 const app = express();
-const port = process.env.PORT || 6000;
+const port = process.env.PORT;
 app.use(cors());
 // Body-parser middleware
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // MongoDB Setup
-mongoose.connect('mongodb://localhost:27017/imageUploader', {
+mongoose.connect(`${process.env.MONGODB_URL}/imageUploader`, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
