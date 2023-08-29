@@ -5,14 +5,13 @@ import axios from 'axios';
 export const uploadFile = async (url, key) => {
 	const ext = key.split('.')[1];
 
-	console.log("key", ext);
+	// console.log("key", ext);
 	let response = await axios.get(url, { responseType: 'arraybuffer' }).then((res) => {
-		console.log('res', res.data.data);
+		// console.log('res', res.data.data);
 		return res.data.data;
 	}).catch((err) => {
 		console.log('err in axios call', err.config);
 	});
-	console.log("data", response);
 	// Upload the image to S3 using the pre-signed URL
 	const params = {
 		Bucket: process.env.AWS_BUCKET,
