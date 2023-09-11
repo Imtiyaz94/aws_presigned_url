@@ -9,14 +9,15 @@ export const getPresignedUrls = async (req, res) => {
 	console.log('query', ext);
 
 	const params = {
-		Bucket: process.env.AWS_BUCKET,
+		// Bucket: process.env.AWS_BUCKET,
+		Bucket: "demoawsurl",
 		Key: Key,
 		ContentType: `image/${ext}`, // Set the content type
 		Expires: 3600, // URL expiration time in seconds
 	};
 
 	const url = await s3.getSignedUrl('putObject', params);
-	uploadFile(url, Key);
+	uploadFile(res, url, Key);
 	res.json({ success: true, message: 'AWS SDK S3 Pre- signed urls generated successfully', url, key: Key });
 
 };

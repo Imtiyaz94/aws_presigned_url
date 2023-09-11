@@ -12,16 +12,17 @@ const UploadFiles = () => {
 		}
 
 		const fileType = encodeURIComponent(file.type);
-		console.log('filetype', fileType);
+		console.log('filetype', file);
 		const data = await axios.get(`http://localhost:5000/aws/getPresignedUrls?fileType=${fileType}`).then((data) => {
-			console.log(data.data);
+			console.log("axios get", data.data);
 			return data.data;
 		}).catch((err) => {
 			console.log(err);
 		});
 		const { url, key } = data;
-		console.log('url', url, key);
-		await axios.put(url, file);
+		console.log('url', url,);
+		const options = { headers: { 'Content-Type': fileType, } };
+		await axios.put(url, file, options);
 
 		return key;
 
@@ -57,7 +58,7 @@ const UploadFiles = () => {
 			<div className='image-list'>
 				{
 					image && image?.map((img) => {
-						console.log('image', img);
+						// console.log('image', img);
 						return (
 							<div key={img.key}>
 								<img className='image' src={img.url} alt="uploaded images to shown here..." />
